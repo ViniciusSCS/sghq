@@ -39,7 +39,7 @@ class RepositoryCommand extends Command
     {
         $name = $this->argument('name');
 
-        $path = app_path('Repository/' . $name . '.php');
+        $path = app_path('Repositories/' . $name . '.php');
 
         if (file_exists($path)) {
             $this->error('O arquivo já existe.');
@@ -50,7 +50,7 @@ class RepositoryCommand extends Command
 
         file_put_contents($path, '<?php
 
-namespace App\Repository;
+namespace App\Repositories;
 
 class ' . $name . '
 {
