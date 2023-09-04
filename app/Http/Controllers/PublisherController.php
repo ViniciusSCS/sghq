@@ -29,11 +29,12 @@ class PublisherController extends Controller
     /**
      * @OA\Post(
      *      tags={"Publisher"},
-     *      path="/user/cadastro",
+     *      path="/editora/cadastro",
      *      @OA\Parameter(
      *          name="name",
      *          required=true,
      *      ),
+     *      security={{"bearerAuth": {}}},
      *      @OA\Response(response="200", description="Cadastra as informações do usuário"),
      *      @OA\Response(response="401", description="Usuário não Autenticado"),
      *      @OA\Response(response="422", description="Erro em algum campo obrigatório"),

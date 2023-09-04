@@ -59,6 +59,141 @@
                     }
                 ]
             }
+        },
+        "/editora/cadastro": {
+            "post": {
+                "tags": [
+                    "Publisher"
+                ],
+                "operationId": "a30d4ad7e36e15e20a96ebb95bad9abf",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Cadastra as informações do usuário"
+                    },
+                    "401": {
+                        "description": "Usuário não Autenticado"
+                    },
+                    "422": {
+                        "description": "Erro em algum campo obrigatório"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/tipo_hq/cadastro": {
+            "post": {
+                "tags": [
+                    "TypeComic"
+                ],
+                "operationId": "f6023ddd09791a7757025fa014d38ccc",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Cadastra as informações do tipo de HQ"
+                    },
+                    "401": {
+                        "description": "Usuário não Autenticado"
+                    },
+                    "422": {
+                        "description": "Erro em algum campo obrigatório"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/tipo_hq/listar": {
+            "get": {
+                "tags": [
+                    "TypeComic"
+                ],
+                "operationId": "28f3458d808b3cb6fd9809137f014048",
+                "responses": {
+                    "200": {
+                        "description": "Lista os tipo de HQ cadastrados"
+                    },
+                    "401": {
+                        "description": "Usuário não Autenticado"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/user/cadastro": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "operationId": "55af4a4d8233267cc56a82fbdbfdba93",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "required": true
+                    },
+                    {
+                        "name": "email",
+                        "required": true
+                    },
+                    {
+                        "name": "password",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Cadastra as informações do usuário"
+                    },
+                    "401": {
+                        "description": "Usuário não Autenticado"
+                    },
+                    "422": {
+                        "description": "Erro em algum campo obrigatório"
+                    }
+                }
+            }
+        },
+        "/user/": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "operationId": "b334625968b998a2f5c9970e14bc21d1",
+                "responses": {
+                    "200": {
+                        "description": "Apreseta informações do usuário logado"
+                    },
+                    "401": {
+                        "description": "Usuário não Autenticado"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
         }
     },
     "components": {
