@@ -1,6 +1,12 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\{
+    AuthController,
+    ComicController,
+    PublisherController,
+    TypeComicController,
+    UserController
+};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +20,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/cadastrar', [UserController::class, 'create']);
+
 Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
+
+    Route::prefix('user')->group(function () {
+        Route::get('/', [UserController::class, 'user']);
+        Route::put('/editar', [UserController::class, 'edit']);
+        Route::delete('/deletar', [UserController::class, 'delete']);
+    });
+
+    Route::prefix('editora')->group(function () {
+        Route::post('/cadastrar', [PublisherController::class, 'create']);
+    });
+
+    Route::prefix('tipo_hq')->group(function () {
+        Route::post('/cadastrar', [TypeComicController::class, 'create']);
+        Route::get('/', [TypeComicController::class, 'list']);
+    });
+
+    Route::prefix('hq')->group(function () {
+        Route::post('/cadastrar', [ComicController::class, 'create']);
+    });
 });

@@ -2,10 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\Geral;
+use App\Http\Requests\TypeComicRequest;
+use App\Services\TypeComicService;
 use Illuminate\Http\Request;
 
 class TypeComicController extends Controller
 {
+    protected $service;
+
+    public function __construct(TypeComicService $service)
+    {
+        $this->service = $service;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,24 +27,42 @@ class TypeComicController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @OA\Post(
+     *      tags={"TypeComic"},
+     *      path="/tipo_hq/cadastro",
+     *      @OA\Parameter(
+     *          name="name",
+     *          required=true,
+     *      ),
+     *      @OA\Response(response="200", description="Cadastra as informações do tipo de HQ"),
+     *      @OA\Response(response="401", description="Usuário não Autenticado"),
+     *      @OA\Response(response="422", description="Erro em algum campo obrigatório"),
+     * )
      */
-    public function create()
+    public function create(TypeComicRequest $request)
     {
-        //
+        $typeComic = $this->service->create($request);
+
+        return ['status' => true, 'message' => Geral::TIPO_HQ_CADASTRO, "tipo_hq" => $typeComic];
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @OA\Get(
+     *     tags={"TypeComic"},
+     *     path="/tipo_hq/listar",
+     *     security={{"bearerAuth": {}}},
+     *     @OA\Response(response="200", description="Lista os tipo de HQ cadastrados"),
+     *     @OA\Response(response="401", description="Usuário não Autenticado"),
+     * )
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return App\Models\TypeComic
      */
-    public function store(Request $request)
+    public function list()
     {
-        //
+        $typeComic = $this->service->list();
+
+        return ['status' => true, 'message' => Geral::TIPO_HQ_CADASTRO, "tipo_hq" => $typeComic];
     }
 
     /**

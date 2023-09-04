@@ -2,39 +2,64 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\Geral;
+use App\Http\Requests\UserRequest;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    protected $service;
+
+    public function __construct(UserService $service)
     {
-        //
+        $this->service = $service;
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @OA\Post(
+     *      tags={"User"},
+     *      path="/user/cadastro",
+     *      @OA\Parameter(
+     *          name="name",
+     *          required=true,
+     *      ),
+     *      @OA\Parameter(
+     *          name="email",
+     *          required=true,
+     *      ),
+     *      @OA\Parameter(
+     *          name="password",
+     *          required=true,
+     *      ),
+     *      @OA\Response(response="200", description="Cadastra as informações do usuário"),
+     *      @OA\Response(response="401", description="Usuário não Autenticado"),
+     *      @OA\Response(response="422", description="Erro em algum campo obrigatório"),
+     * )
      */
-    public function create()
+    public function create(UserRequest $request)
     {
-        //
+        $user = $this->service->create($request);
+
+        return ['status' => true, 'message' => Geral::USUARIO_CADASTRADO, "usuario" => $user];
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @OA\Get(
+     *      tags={"User"},
+     *      path="/user/",
+     *      security={{"bearerAuth": {}}},
+     *      @OA\Response(response="200", description="Apreseta informações do usuário logado"),
+     *      @OA\Response(response="401", description="Usuário não Autenticado"),
+     * )
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return App\Models\User
      */
-    public function store(Request $request)
+    public function user(Request $request)
     {
-        //
+        $user = $this->service->user($request);
+
+        return ['status' => true, 'message' => Geral::USUARIO_ME, "usuario" => $user];
     }
 
     /**

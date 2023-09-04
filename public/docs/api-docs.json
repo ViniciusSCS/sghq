@@ -9,6 +9,58 @@
             "url": "http://localhost:8000/api"
         }
     ],
+    "paths": {
+        "/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "operationId": "2dd578ff7aba2721293dac66833b27d1",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "required": true
+                    },
+                    {
+                        "name": "password",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuário loga com email e senha"
+                    },
+                    "422": {
+                        "description": "Erro em algum campo obrigatório"
+                    }
+                }
+            }
+        },
+        "/logout": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "operationId": "68a6108af04af5e3bc1ea68a6c6f1299",
+                "responses": {
+                    "200": {
+                        "description": "Rota para deslogar usuário e revogar token"
+                    },
+                    "401": {
+                        "description": "Usuário não Autenticado"
+                    },
+                    "422": {
+                        "description": "Erro em algum campo obrigatório"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
     "components": {
         "securitySchemes": {
             "bearerAuth": {

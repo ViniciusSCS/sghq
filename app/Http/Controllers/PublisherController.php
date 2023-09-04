@@ -2,10 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\Geral;
+use App\Http\Requests\PublisherRequest;
+use App\Services\PublisherService;
 use Illuminate\Http\Request;
 
 class PublisherController extends Controller
 {
+    protected $service;
+
+    public function __construct(PublisherService $service)
+    {
+        $this->service = $service;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,13 +27,23 @@ class PublisherController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @OA\Post(
+     *      tags={"Publisher"},
+     *      path="/user/cadastro",
+     *      @OA\Parameter(
+     *          name="name",
+     *          required=true,
+     *      ),
+     *      @OA\Response(response="200", description="Cadastra as informações do usuário"),
+     *      @OA\Response(response="401", description="Usuário não Autenticado"),
+     *      @OA\Response(response="422", description="Erro em algum campo obrigatório"),
+     * )
      */
-    public function create()
+    public function create(PublisherRequest $request)
     {
-        //
+        $publisher = $this->service->create($request);
+
+        return ['status' => true, 'message' => Geral::EDITORA_CADASTRO, "editora" => $publisher];
     }
 
     /**
