@@ -9,12 +9,13 @@ class TypeComic extends Model
     protected $table = 'types_comics';
 
     protected $fillable = [
+        'uuid',
         'name',
         'publisher_id'
     ];
 
     public function publisher()
     {
-        return $this->hasOne(Publisher::class, 'id', 'publisher_id');
+        return $this->hasOne(Publisher::class, 'uuid', 'publisher_id');
     }
 }

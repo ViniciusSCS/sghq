@@ -19,9 +19,15 @@ class Geral
     // Editora
 
     const EDITORA_CADASTRO = 'Editora cadastrada com sucesso!';
+    const EDITORA_ENCONTRADAS = 'Editora de HQs encontradas!';
 
     // Tipo HQ
 
     const TIPO_HQ_CADASTRO = 'Tipo de HQ cadastrada com sucesso!';
     const TIPO_HQ_ENCONTRADOS = 'Tipo de HQ encontradas!';
+
+    // HQ
+
+    const HQ_CADASTRO = 'HQ cadastrada com sucesso!';
+    const HQ_ENCONTRADOS = 'HQ encontradas!';
 }

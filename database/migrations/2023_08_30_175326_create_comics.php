@@ -15,13 +15,12 @@ class CreateComics extends Migration
     {
         Schema::create('comics', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique()->nullable();
             $table->string('name');
             $table->string('publication_date');
-            $table->unsignedBigInteger('type_comic_id');
-            $table->unsignedBigInteger('user_id');
+            $table->foreignUuid('type_comic_id')->references('uuid')->on('types_comics');
+            $table->foreignUuid('user_id')->references('uuid')->on('users');
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

@@ -29,7 +29,7 @@ class TypeComicController extends Controller
     /**
      * @OA\Post(
      *      tags={"TypeComic"},
-     *      path="/tipo_hq/cadastro",
+     *      path="/tipo_hq/cadastrar",
      *      @OA\Parameter(
      *          name="name",
      *          required=true,
@@ -50,7 +50,7 @@ class TypeComicController extends Controller
     /**
      * @OA\Get(
      *     tags={"TypeComic"},
-     *     path="/tipo_hq/listar",
+     *     path="/tipo_hq/",
      *     security={{"bearerAuth": {}}},
      *     @OA\Response(response="200", description="Lista os tipo de HQ cadastrados"),
      *     @OA\Response(response="401", description="Usuário não Autenticado"),

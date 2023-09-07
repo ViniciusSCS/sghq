@@ -29,11 +29,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('user')->group(function () {
         Route::get('/', [UserController::class, 'user']);
         Route::put('/editar', [UserController::class, 'edit']);
-        Route::delete('/deletar', [UserController::class, 'delete']);
+        Route::delete('/deletar', [UserController::class, 'destroy']);
     });
 
     Route::prefix('editora')->group(function () {
         Route::post('/cadastrar', [PublisherController::class, 'create']);
+        Route::get('/', [PublisherController::class, 'list']);
     });
 
     Route::prefix('tipo_hq')->group(function () {
@@ -43,5 +44,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('hq')->group(function () {
         Route::post('/cadastrar', [ComicController::class, 'create']);
+        Route::get('/', [ComicController::class, 'list']);
     });
 });

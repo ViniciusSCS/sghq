@@ -2,39 +2,70 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\Geral;
+use App\Http\Requests\ComicRequest;
+use App\Services\ComicService;
 use Illuminate\Http\Request;
 
 class ComicController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    protected $service;
+
+    public function __construct(ComicService $service)
     {
-        //
+        $this->service = $service;
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @OA\Post(
+     *      tags={"Comic"},
+     *      path="/hq/cadastrar",
+     *      @OA\Parameter(
+     *          name="name",
+     *          required=true,
+     *      ),
+     *      @OA\Parameter(
+     *          name="publication_date",
+     *          required=true,
+     *      ),
+     *      @OA\Parameter(
+     *          name="type_comic_id",
+     *          required=true,
+     *      ),
+     *      @OA\Parameter(
+     *          name="user_id",
+     *          required=true,
+     *      ),
+     *      security={{"bearerAuth": {}}},
+     *      @OA\Response(response="200", description="Cadastra as informações da HQ"),
+     *      @OA\Response(response="401", description="Usuário não Autenticado"),
+     *      @OA\Response(response="422", description="Erro em algum campo obrigatório"),
+     * )
      */
-    public function create()
+    public function create(ComicRequest $request)
     {
-        //
+        $comic = $this->service->create($request);
+
+        return ['status' => true, 'message' => Geral::HQ_CADASTRO, 'comic' => $comic];
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @OA\Get(
+     *     tags={"Comic"},
+     *     path="/hq/",
+     *     security={{"bearerAuth": {}}},
+     *     @OA\Response(response="200", description="Lista as HQ cadastradas por usuário"),
+     *     @OA\Response(response="401", description="Usuário não Autenticado"),
+     * )
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return App\Models\Comic
      */
-    public function store(Request $request)
+    public function list(Request $request)
     {
-        //
+        $comic = $this->service->list($request);
+
+        return ['status' => true, 'message' => Geral::HQ_ENCONTRADOS, 'comic' => $comic];
     }
 
     /**

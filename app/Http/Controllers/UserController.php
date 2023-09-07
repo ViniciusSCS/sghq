@@ -19,7 +19,7 @@ class UserController extends Controller
     /**
      * @OA\Post(
      *      tags={"User"},
-     *      path="/user/cadastro",
+     *      path="/cadastrar",
      *      @OA\Parameter(
      *          name="name",
      *          required=true,

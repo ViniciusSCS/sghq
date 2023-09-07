@@ -60,21 +60,33 @@
                 ]
             }
         },
-        "/editora/cadastro": {
+        "/hq/cadastrar": {
             "post": {
                 "tags": [
-                    "Publisher"
+                    "Comic"
                 ],
-                "operationId": "a30d4ad7e36e15e20a96ebb95bad9abf",
+                "operationId": "0f2c37ace41f88c5b9048a9319795668",
                 "parameters": [
                     {
                         "name": "name",
+                        "required": true
+                    },
+                    {
+                        "name": "publication_date",
+                        "required": true
+                    },
+                    {
+                        "name": "type_comic_id",
+                        "required": true
+                    },
+                    {
+                        "name": "user_id",
                         "required": true
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Cadastra as informações do usuário"
+                        "description": "Cadastra as informações da HQ"
                     },
                     "401": {
                         "description": "Usuário não Autenticado"
@@ -90,12 +102,84 @@
                 ]
             }
         },
-        "/tipo_hq/cadastro": {
+        "/hq/": {
+            "get": {
+                "tags": [
+                    "Comic"
+                ],
+                "operationId": "9e02c0b19db5a5d55619fefee938cab4",
+                "responses": {
+                    "200": {
+                        "description": "Lista as HQ cadastradas por usuário"
+                    },
+                    "401": {
+                        "description": "Usuário não Autenticado"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/editora/cadastrar": {
+            "post": {
+                "tags": [
+                    "Publisher"
+                ],
+                "operationId": "4833aebcb40416fbdf59eb94f06229d4",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Cadastra as informações da Editora"
+                    },
+                    "401": {
+                        "description": "Usuário não Autenticado"
+                    },
+                    "422": {
+                        "description": "Erro em algum campo obrigatório"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/editora/": {
+            "get": {
+                "tags": [
+                    "Publisher"
+                ],
+                "operationId": "f17302ac8ad5cd16a69411e2052d0f64",
+                "responses": {
+                    "200": {
+                        "description": "Lista as Edições cadastradas"
+                    },
+                    "401": {
+                        "description": "Usuário não Autenticado"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/tipo_hq/cadastrar": {
             "post": {
                 "tags": [
                     "TypeComic"
                 ],
-                "operationId": "f6023ddd09791a7757025fa014d38ccc",
+                "operationId": "474a8378c414d748b563a68449f57c49",
                 "parameters": [
                     {
                         "name": "name",
@@ -120,12 +204,12 @@
                 ]
             }
         },
-        "/tipo_hq/listar": {
+        "/tipo_hq/": {
             "get": {
                 "tags": [
                     "TypeComic"
                 ],
-                "operationId": "28f3458d808b3cb6fd9809137f014048",
+                "operationId": "ea456d629f7d5001da485698f7d70a72",
                 "responses": {
                     "200": {
                         "description": "Lista os tipo de HQ cadastrados"
@@ -141,12 +225,12 @@
                 ]
             }
         },
-        "/user/cadastro": {
+        "/cadastrar": {
             "post": {
                 "tags": [
                     "User"
                 ],
-                "operationId": "55af4a4d8233267cc56a82fbdbfdba93",
+                "operationId": "ec03a44772dc1a8e663f30e5fdcb9cd8",
                 "parameters": [
                     {
                         "name": "name",
