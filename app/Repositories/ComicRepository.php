@@ -8,6 +8,11 @@ use Ramsey\Uuid\Uuid;
 
 class ComicRepository
 {
+    public function find($uuid)
+    {
+        return Comic::where('uuid', $uuid)->first();
+    }
+
     public function create($data, $userUuid)
     {
         return Comic::create([
@@ -24,6 +29,15 @@ class ComicRepository
         return $this->query($userUuid)->paginate(10);
     }
 
+    public function delete($uuid)
+    {
+        $comic = $this->find($uuid);
+
+        $comic->delete();
+
+        return $comic;
+    }
+
     private function query($userUuid)
     {
         return Comic::select(
@@ -32,6 +46,7 @@ class ComicRepository
         )
             ->with('typeComic.publisher')
             ->with('user')
-            ->where('user_id', $userUuid);
+            ->where('user_id', $userUuid)
+            ->whereNull('deleted_at');
     }
 }

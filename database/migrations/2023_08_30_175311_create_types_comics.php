@@ -19,6 +19,7 @@ class CreateTypesComics extends Migration
             $table->string('name');
             $table->foreignUuid('publisher_id')->references('uuid')->on('publishers');
             $table->timestamps();
+            $table->string('deleted_at')->nullable();
         });
     }
 

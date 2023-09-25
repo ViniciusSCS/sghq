@@ -11,7 +11,8 @@ class TypeComic extends Model
     protected $fillable = [
         'uuid',
         'name',
-        'publisher_id'
+        'publisher_id',
+        'deleted_at'
     ];
 
     public function publisher()

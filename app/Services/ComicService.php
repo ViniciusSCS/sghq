@@ -27,4 +27,17 @@ class ComicService
 
         return $this->repository->list($userUuid);
     }
+
+    public function delete($request, $uuid)
+    {
+        $userUuid = $request->user()->uuid;
+
+        $comic = $this->repository->find($uuid);
+
+        if ($comic == null || $userUuid != $comic->user_id) {
+            return null;
+        }
+
+        return $this->repository->delete($uuid);
+    }
 }

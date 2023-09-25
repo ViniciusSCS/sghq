@@ -65,7 +65,7 @@ class ComicController extends Controller
     {
         $comic = $this->service->list($request);
 
-        return ['status' => true, 'message' => Geral::HQ_ENCONTRADOS, 'comic' => $comic];
+        return ['status' => true, 'message' => Geral::HQ_ENCONTRADAS, 'comic' => $comic];
     }
 
     /**
@@ -108,8 +108,15 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $uuid)
     {
-        //
+        $comic = $this->service->delete($request, $uuid);
+
+        $info = ($comic == NULL ?
+            ['status' => false, 'message' => Geral::HQ_NAO_ENCONTRADA] :
+            ['status' => true, 'message' => Geral::HQ_DELETADA, "pet" => $comic]
+        );
+
+        return $info;
     }
 }

@@ -3,15 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Comic extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'uuid',
         'name',
         'publication_date',
         'type_comic_id',
-        'user_id'
+        'user_id',
+        'deleted_at'
     ];
 
     public function typeComic()

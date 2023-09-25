@@ -9,6 +9,7 @@ class Publisher extends Model
 {
     protected $fillable = [
         'uuid',
-        'name'
+        'name',
+        'deleted_at'
     ];
 }

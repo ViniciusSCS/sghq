@@ -45,5 +45,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('hq')->group(function () {
         Route::post('/cadastrar', [ComicController::class, 'create']);
         Route::get('/', [ComicController::class, 'list']);
+        Route::delete('/deletar/{uuid}', [ComicController::class, 'destroy']);
     });
 });

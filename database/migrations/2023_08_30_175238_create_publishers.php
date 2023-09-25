@@ -18,6 +18,7 @@ class CreatePublishers extends Migration
             $table->uuid('uuid')->unique()->nullable();
             $table->string('name');
             $table->timestamps();
+            $table->string('deleted_at')->nullable();
         });
     }
 

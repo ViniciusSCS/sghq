@@ -29,5 +29,7 @@ class Geral
     // HQ
 
     const HQ_CADASTRO = 'HQ cadastrada com sucesso!';
-    const HQ_ENCONTRADOS = 'HQ encontradas!';
+    const HQ_ENCONTRADAS = 'HQ encontradas!';
+    const HQ_NAO_ENCONTRADA = 'HQ não encontrada!';
+    const HQ_DELETADA = 'Usuário deletado com sucesso!';
 }

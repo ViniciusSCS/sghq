@@ -21,6 +21,7 @@ class CreateComics extends Migration
             $table->foreignUuid('type_comic_id')->references('uuid')->on('types_comics');
             $table->foreignUuid('user_id')->references('uuid')->on('users');
             $table->timestamps();
+            $table->string('deleted_at')->nullable();
         });
     }
 
