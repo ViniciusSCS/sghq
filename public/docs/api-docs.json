@@ -123,6 +123,39 @@
                 ]
             }
         },
+        "/hq/deletar/{uuid}": {
+            "delete": {
+                "tags": [
+                    "Comic"
+                ],
+                "operationId": "3d2b702ad33442c149e283a5de1250d1",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "description": "Comic uuid",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Apreseta informações da HQ deletada ou Retorno da HHQ não encontrada"
+                    },
+                    "401": {
+                        "description": "Usuário não Autenticado"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/editora/cadastrar": {
             "post": {
                 "tags": [

@@ -103,10 +103,26 @@ class ComicController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     *     tags={"Comic"},
+     *     path="/hq/deletar/{uuid}",
+     *      @OA\Parameter(
+     *          name="uuid",
+     *          description="Comic uuid",
+     *          in="path",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="integer",
+     *              format="int64"
+     *          )
+     *      ),
+     *     security={{"bearerAuth": {}}},
+     *     @OA\Response(response="200", description="Apreseta informações da HQ deletada ou Retorno da HHQ não encontrada"),
+     *     @OA\Response(response="401", description="Usuário não Autenticado"),
+     * )
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request, $uuid
+     * @return App\Models\Comic
      */
     public function destroy(Request $request, $uuid)
     {
