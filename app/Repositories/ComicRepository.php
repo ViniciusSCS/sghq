@@ -44,8 +44,7 @@ class ComicRepository
             '*',
             DB::raw("date_format(publication_date, '%d/%m/%Y') as publication_date"),
         )
-            ->with('typeComic.publisher')
-            ->with('user')
+            ->with('typeComic.publisher', 'user')
             ->where('user_id', $userUuid)
             ->whereNull('deleted_at');
     }
